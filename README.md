@@ -14,3 +14,24 @@ Container specific benchmarks are under 'container' directory.
 Some benchmarks needs to be either triggered from an external system or
 requires an associated program to be running on an external system
 Those are kept in the external folder
+
+#Instructions for Running the benchmarks
+
+1. Setup the system
+
+./host_setup.sh
+./container_setup.sh
+
+2. Run the container benchmarks
+
+./container_run.sh
+This will run all the container benchmarks
+
+./external/apachebench.sh <container-IP:port>
+This will run apachebench against the container
+
+3. Run the host benchmarks
+
+./host_benchmark_setup.sh
+./host_benchmark_run.sh
+
