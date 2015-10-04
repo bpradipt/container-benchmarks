@@ -16,6 +16,6 @@ echo "Host IP for container to connect to ${HOST_IP}"
 CID=`docker run -itd -p 80 --hostname=benchmark.node benchmark/execution ${HOST_IP}`
 CIP=`docker inspect -f '{{ .NetworkSettings.IPAddress }}' ${CID}`
 echo "Container ID: ${CID} Container IP: ${CIP}"
-echo "Container json logs are in /var/log/docker/containers/${CID}/${CID}-json.log"
+echo "Container json logs are in /var/lib/docker/containers/${CID}/${CID}-json.log"
 echo "Additionally container logs can be displayed using docker logs ${CID}"
 
