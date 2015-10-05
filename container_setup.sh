@@ -2,13 +2,20 @@
 #Prepare container for running the benchmarks
 
 #Create base image for container
+ARCH=`uname -m`
 RELEASE='trusty'
 apt-get install -y debootstrap
 rm -fr /${RELEASE}
 debootstrap --components=main,universe ${RELEASE} /${RELEASE}
 
 #Add update repo
-echo "deb http://ports.ubuntu.com/ubuntu-ports ${RELEASE}-updates main" >> /${RELEASE}/etc/apt/sources.list
+if [ "${ARCH}" == "x86_64" ]
+then
+    echo " deb http://archive.ubuntu.com/ubuntu ${RELEASE}-updates main" >> /${RELEASE}/etc/apt/sources.list
+else
+    echo "deb http://ports.ubuntu.com/ubuntu-ports ${RELEASE}-updates main" >> /${RELEASE}/etc/apt/sources.list
+fi
+
 
 #Update the image with latest fixes
 
