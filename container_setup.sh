@@ -11,9 +11,9 @@ debootstrap --components=main,universe ${RELEASE} /${RELEASE}
 #Add update repo
 if [ "${ARCH}" == "x86_64" ]
 then
-    echo " deb http://archive.ubuntu.com/ubuntu ${RELEASE}-updates main" >> /${RELEASE}/etc/apt/sources.list
+    echo " deb http://archive.ubuntu.com/ubuntu ${RELEASE}-updates main" >> /${RELEASE}/etc/apt/sources.list.d/${RELEASE}-updates.list
 else
-    echo "deb http://ports.ubuntu.com/ubuntu-ports ${RELEASE}-updates main" >> /${RELEASE}/etc/apt/sources.list
+    echo "deb http://ports.ubuntu.com/ubuntu-ports ${RELEASE}-updates main" >> /${RELEASE}/etc/apt/sources.list/${RELEASE}-updates.list
 fi
 
 
@@ -34,6 +34,7 @@ umount /${RELEASE}/dev/
 umount /${RELEASE}/sys/
 umount /${RELEASE}/proc/
 
+rm -f /${RELEASE}/etc/apt/sources.list.d/${RELEASE}-updates.list
 
 tar -C /${RELEASE} -c . | sudo docker import - benchmark/ubuntu:latest
 
