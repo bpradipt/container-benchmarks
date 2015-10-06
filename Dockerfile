@@ -23,7 +23,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y \
 	libgmp-dev \
 	libmpc-dev \
 	flex\
-	supervisor
+	supervisor \
+    bc
 
 ADD .  /benchmarks
 WORKDIR /benchmarks
