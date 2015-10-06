@@ -13,7 +13,7 @@ HOST_IP=${LOCAL_HOST_IP:-$IP}
 echo "Host IP for container to connect to ${HOST_IP}"
 #wordpress port=80
 
-CID=`docker run -itd -p 80 --hostname=benchmark.node benchmark/execution ${HOST_IP}`
+CID=`docker run -e NETSERVER_HOST=${HOST_IP} -itd -p 80 --hostname=benchmark.node benchmark/execution`
 CIP=`docker inspect -f '{{ .NetworkSettings.IPAddress }}' ${CID}`
 echo "Container ID: ${CID} Container IP: ${CIP}"
 echo "Container json logs are in /var/lib/docker/containers/${CID}/${CID}-json.log"
