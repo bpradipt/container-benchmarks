@@ -29,6 +29,9 @@ evaluating docker performance. More details [here](http://redhat.slides.com/jere
     ./container_run.sh  
     This will run all the container benchmarks  
 
+    ./container_run.sh wordpress
+    This will run only the wordpress test
+
     ./external/apachebench.sh <container-IP:port>  
     This will run apachebench against the container  
 
